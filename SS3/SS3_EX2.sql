@@ -1,0 +1,25 @@
+USE homeworks;
+CREATE TABLE books(
+bookID INT AUTO_INCREMENT PRIMARY KEY,
+bookName VARCHAR(100) UNIQUE,
+bookYear INT NOT NULL,
+bookWriter VARCHAR(50) NOT NULL
+);
+CREATE TABLE readers(
+readerID INT AUTO_INCREMENT PRIMARY KEY,
+readerName VARCHAR(50) NOT NULL,
+readerAge INT ,
+readerPhone VARCHAR(15) NOT NULL
+);
+CREATE TABLE borrowings(
+borrowingID INT AUTO_INCREMENT PRIMARY KEY,
+checkOutDate DATE,
+returnDate DATE NOT NULL,
+bookID INT,
+readerID INT,
+FOREIGN KEY (bookID) REFERENCES books(bookID),
+FOREIGN KEY (readerID) REFERENCES readers(readerID)
+);
+
+ALTER TABLE borrowings
+MODIFY COLUMN checkOutDate DATE NOT NULL;
